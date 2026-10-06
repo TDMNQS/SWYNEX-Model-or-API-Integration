@@ -1,0 +1,11 @@
+Completed a local prototype for Task 2: Model or API Integration with @SWYNEX Technologies.
+
+I integrated scikit-learn to build a research Q&A prototype using TF-IDF and cosine similarity. It searches five paraphrased research notes, returns relevant sentences with original paper links, and declines queries when the matching evidence is weak.
+
+The prototype includes a browser interface, paper filtering, example inputs and actual outputs, and validation checks. It runs locally without an API key.
+
+This is a retrieval and extractive-answer baseline. Full PDF indexing and generative RAG are future improvements.
+
+My key learning: integrating a library is only part of the task—clear data scope, visible evidence, and testing matter too.
+
+#SWYNEX #Internship #Python #MachineLearning #NLP #ScikitLearn

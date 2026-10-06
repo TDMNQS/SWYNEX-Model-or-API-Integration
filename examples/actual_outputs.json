@@ -1,0 +1,201 @@
+{
+  "python_version": "3.12.14",
+  "scikit_learn_version": "1.8.0",
+  "note": "Actual smoke-demo outputs, not a held-out research benchmark.",
+  "examples": [
+    {
+      "question": "What similarity measure does Sentence-BERT use?",
+      "answer": "Semantic similarity search compares these embeddings using cosine similarity. Encoding sentences separately avoids repeatedly processing every possible sentence pair through BERT, making similarity search more efficient.",
+      "abstained": false,
+      "citations": [
+        {
+          "paper_id": "P01",
+          "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+          "url": "https://arxiv.org/abs/1908.10084",
+          "section": "Abstract \u2014 paraphrased source note",
+          "evidence": "Semantic similarity search compares these embeddings using cosine similarity. Encoding sentences separately avoids repeatedly processing every possible sentence pair through BERT, making similarity search more efficient."
+        }
+      ],
+      "retrieval_score": 0.3397,
+      "term_coverage": 0.8333,
+      "related_sources": [
+        {
+          "paper_id": "P01",
+          "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+          "score": 0.3397
+        },
+        {
+          "paper_id": "P05",
+          "title": "Lost in the Middle: How Language Models Use Long Contexts",
+          "score": 0.1219
+        },
+        {
+          "paper_id": "P02",
+          "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+          "score": 0.0
+        }
+      ],
+      "elapsed_ms": 1.86,
+      "mode": "TF-IDF retrieval + extractive answer from paraphrased notes"
+    },
+    {
+      "question": "How does REALM train its retriever?",
+      "answer": "REALM incorporates a latent knowledge retriever into language-model pre-training. Masked language modeling supplies a learning signal for training the retriever without supervised retrieval labels.",
+      "abstained": false,
+      "citations": [
+        {
+          "paper_id": "P04",
+          "title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+          "url": "https://arxiv.org/abs/2002.08909",
+          "section": "Abstract \u2014 paraphrased source note",
+          "evidence": "REALM incorporates a latent knowledge retriever into language-model pre-training. Masked language modeling supplies a learning signal for training the retriever without supervised retrieval labels."
+        }
+      ],
+      "retrieval_score": 0.3208,
+      "term_coverage": 1.0,
+      "related_sources": [
+        {
+          "paper_id": "P04",
+          "title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+          "score": 0.3208
+        },
+        {
+          "paper_id": "P05",
+          "title": "Lost in the Middle: How Language Models Use Long Contexts",
+          "score": 0.0526
+        },
+        {
+          "paper_id": "P02",
+          "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+          "score": 0.0273
+        }
+      ],
+      "elapsed_ms": 1.33,
+      "mode": "TF-IDF retrieval + extractive answer from paraphrased notes"
+    },
+    {
+      "question": "What does Lost in the Middle investigate?",
+      "answer": "Lost in the Middle investigates how language models use information inside long contexts. A large context window alone does not guarantee robust use of all context.",
+      "abstained": false,
+      "citations": [
+        {
+          "paper_id": "P05",
+          "title": "Lost in the Middle: How Language Models Use Long Contexts",
+          "url": "https://arxiv.org/abs/2307.03172",
+          "section": "Abstract \u2014 paraphrased source note",
+          "evidence": "Lost in the Middle investigates how language models use information inside long contexts. A large context window alone does not guarantee robust use of all context."
+        }
+      ],
+      "retrieval_score": 0.2602,
+      "term_coverage": 0.75,
+      "related_sources": [
+        {
+          "paper_id": "P05",
+          "title": "Lost in the Middle: How Language Models Use Long Contexts",
+          "score": 0.2602
+        },
+        {
+          "paper_id": "P01",
+          "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+          "score": 0.0
+        },
+        {
+          "paper_id": "P02",
+          "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+          "score": 0.0
+        }
+      ],
+      "elapsed_ms": 1.17,
+      "mode": "TF-IDF retrieval + extractive answer from paraphrased notes"
+    },
+    {
+      "question": "What role does the neural retriever play in Retrieval-Augmented Generation?",
+      "answer": "Retrieval-Augmented Generation combines a pretrained sequence-to-sequence model with an external dense vector index of Wikipedia. A neural retriever provides documents that supply evidence for generation.",
+      "abstained": false,
+      "citations": [
+        {
+          "paper_id": "P03",
+          "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+          "url": "https://arxiv.org/abs/2005.11401",
+          "section": "Abstract \u2014 paraphrased source note",
+          "evidence": "Retrieval-Augmented Generation combines a pretrained sequence-to-sequence model with an external dense vector index of Wikipedia. A neural retriever provides documents that supply evidence for generation."
+        }
+      ],
+      "retrieval_score": 0.3218,
+      "term_coverage": 0.75,
+      "related_sources": [
+        {
+          "paper_id": "P03",
+          "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+          "score": 0.3218
+        },
+        {
+          "paper_id": "P04",
+          "title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+          "score": 0.0533
+        },
+        {
+          "paper_id": "P05",
+          "title": "Lost in the Middle: How Language Models Use Long Contexts",
+          "score": 0.0524
+        }
+      ],
+      "elapsed_ms": 1.05,
+      "mode": "TF-IDF retrieval + extractive answer from paraphrased notes"
+    },
+    {
+      "question": "What is the latest 2026 benchmark score for this assistant?",
+      "answer": "I cannot answer this from the included research notes. Try a question about their methods or limitations.",
+      "abstained": true,
+      "citations": [],
+      "retrieval_score": 0.0,
+      "term_coverage": 0.0,
+      "related_sources": [
+        {
+          "paper_id": "P01",
+          "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+          "score": 0.0
+        },
+        {
+          "paper_id": "P02",
+          "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+          "score": 0.0
+        },
+        {
+          "paper_id": "P03",
+          "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+          "score": 0.0
+        }
+      ],
+      "elapsed_ms": 0.37,
+      "mode": "TF-IDF retrieval + extractive answer from paraphrased notes"
+    },
+    {
+      "question": "What is the capital of France?",
+      "answer": "I cannot answer this from the included research notes. Try a question about their methods or limitations.",
+      "abstained": true,
+      "citations": [],
+      "retrieval_score": 0.0,
+      "term_coverage": 0.0,
+      "related_sources": [
+        {
+          "paper_id": "P01",
+          "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+          "score": 0.0
+        },
+        {
+          "paper_id": "P02",
+          "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+          "score": 0.0
+        },
+        {
+          "paper_id": "P03",
+          "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+          "score": 0.0
+        }
+      ],
+      "elapsed_ms": 0.4,
+      "mode": "TF-IDF retrieval + extractive answer from paraphrased notes"
+    }
+  ]
+}

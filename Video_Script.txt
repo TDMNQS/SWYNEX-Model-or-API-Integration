@@ -1,0 +1,11 @@
+Hello, I am Numan Qureshi. For SWYNEX Task 2, I built a local research Q&A prototype with the scikit-learn library.
+
+The application uses TF-IDF and cosine similarity to search five paraphrased research notes. It selects relevant sentences and displays a link to the original paper.
+
+Here I ask: What similarity measure does Sentence-BERT use? The result includes cosine similarity, along with the supporting note and paper link.
+
+Next I ask for the latest 2026 benchmark score for this assistant. Since that information is absent from the notes, the prototype declines the question.
+
+This version runs without an API key. It is an extractive retrieval baseline, not a generative language model or full-PDF RAG system. The project includes actual example outputs and validation tests.
+
+My next step would be full-document indexing and evaluation on unseen questions. Thank you.
