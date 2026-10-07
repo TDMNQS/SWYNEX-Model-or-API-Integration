@@ -1,4 +1,27 @@
-# SWYNEX — Model or API Integration
+# SWYNEX — Research Q&A (Tasks 2 + 3)
+
+## Task 3: Intelligent feature
+
+Task 3 extends the existing Task 2 repository with **multi-paper evidence comparison**. Select two papers and a topic; the system ranks sentences independently within each note and shows source-linked extracts. A comparison is marked incomplete if either paper lacks a strong topic match. The interface displays both the supported evidence and the missing-evidence explanation. It does not infer a winning method or generate unsupported differences.
+
+Example: compare RAG (P03) and REALM (P04) on `retriever`. For a partial-support example, compare Sentence-BERT (P01) and REALM (P04) on `cosine similarity`.
+
+New handling covers duplicate selections, unknown/non-string paper IDs, empty/oversized topics, paper-name-only topics, malformed JSON, request size, and unexpected server errors. The UI shows actionable messages and allows retrying. Same-paper comparisons return HTTP 400; missing evidence is a valid HTTP 200 result with `abstained: true`.
+
+Run the reproducible development evaluation:
+
+```powershell
+.\.venv\Scripts\python.exe evaluate.py
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+```
+
+Actual recorded development evaluation: **11/13 cases passed and 2 challenge probes failed**. See [evaluation results and failure analysis](examples/EVALUATION.md) and [raw outputs](examples/evaluation_report.json). The two failures expose single-question mode's tendency to retrieve another paper when a question incorrectly attributes its terminology to a named paper. All 14 regression/API tests pass; this is a separate check from the 13 evaluation examples. Development cases were visible during implementation and do not establish held-out accuracy.
+
+New API: `POST /api/compare` with `{"question":"retriever","paper_ids":["P03","P04"]}`. `GET /api/evaluation` serves the recorded report. The report is static until `evaluate.py` is run again. Comparison returns `evidence` entries, `citations`, `missing_paper_ids`, `status`, and `abstained`.
+
+The corpus remains five short paraphrased notes. Lexical evidence matching is not entailment verification. Full-PDF RAG and semantic reasoning remain future work.
+
+**Task 3 submission:** use this same repository URL and a new LinkedIn post showing the comparison feature. See [Task 3 post draft](Task3_LinkedIn_Post.txt) and [demo script](Task3_Video_Script.txt). Task 2's original drafts and example outputs remain available below.
 
 **Task 2 · Numan Qureshi · Research-paper Q&A prototype**
 

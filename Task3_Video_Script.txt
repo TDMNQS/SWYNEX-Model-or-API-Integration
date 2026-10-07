@@ -1,0 +1,9 @@
+Hello, I am Numan Qureshi. For SWYNEX Task 3, I improved my existing research Q&A prototype with multi-paper evidence comparison.
+
+In the new comparison section, I select RAG and REALM and enter the topic retriever. The application retrieves relevant sentences independently from both notes and displays their source links.
+
+Next, I select Sentence-BERT and REALM and use the topic cosine similarity. Sentence-BERT has matching evidence, but the REALM note does not, so the app flags an incomplete comparison instead of presenting unsupported differences.
+
+The development evaluation report includes 13 cases: 11 passed and two challenge probes failed. Those failures demonstrate a limitation in single-question routing. Input validation and API regression tests are included separately.
+
+The prototype runs locally without API keys and uses five short paraphrased notes, not full PDFs. My key learning is to show missing evidence and document failures as part of an intelligent feature. Thank you.

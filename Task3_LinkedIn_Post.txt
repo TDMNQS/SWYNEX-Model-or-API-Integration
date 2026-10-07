@@ -1,0 +1,11 @@
+Completed Task 3: Intelligent Feature with @SWYNEX Technologies.
+
+I extended my research Q&A prototype with multi-paper evidence comparison. Users select two research notes and a topic, then inspect relevant extracts with links to the original papers. If either note lacks matching evidence, the interface flags the comparison as incomplete.
+
+I also added input validation, API error handling, and a reproducible evaluation report. The development evaluation recorded 11 passes out of 13 cases, including two failed challenge probes that reveal limitations in single-question routing. Documenting those failures helped distinguish a working demo from a reliable general-purpose system.
+
+This prototype uses scikit-learn and short paraphrased notes; it does not index full PDFs or generate comparisons with an LLM.
+
+GitHub: https://github.com/TDMNQS/SWYNEX-Model-or-API-Integration
+
+#SWYNEX #Internship #Python #NLP #MachineLearning #ScikitLearn

@@ -30,7 +30,7 @@ class PaperAssistant:
         question = question.strip()
         if len(question) > 1000:
             raise ValueError('Question must be at most 1,000 characters.')
-        if paper_id and paper_id not in {p['id'] for p in self.papers}:
+        if paper_id is not None and (not isinstance(paper_id, str) or paper_id not in {p['id'] for p in self.papers}):
             raise ValueError('Unknown paper identifier.')
         q = self.vectorizer.transform([question])
         scores = cosine_similarity(q, self.matrix).ravel()
@@ -67,3 +67,61 @@ class PaperAssistant:
                                     'score':round(float(scores[i]), 4)} for i in candidates[:3]],
                 'elapsed_ms':round((time.perf_counter()-start)*1000, 2),
                 'mode':'TF-IDF retrieval + extractive answer from paraphrased notes'}
+
+    def compare(self, question, paper_ids):
+        """Retrieve theme-specific evidence independently for exactly two papers.
+
+        Does not infer a winner, invent differences, or generate new prose claims.
+        """
+        start = time.perf_counter()
+        if not isinstance(question, str) or not question.strip():
+            raise ValueError('Enter a comparison topic, for example: retriever.')
+        question = question.strip()
+        if len(question) > 1000:
+            raise ValueError('Comparison topic must be at most 1,000 characters.')
+        if not isinstance(paper_ids, list) or len(paper_ids) != 2:
+            raise ValueError('Select exactly two different papers.')
+        valid_ids = {p['id'] for p in self.papers}
+        if any(not isinstance(pid, str) or pid not in valid_ids for pid in paper_ids):
+            raise ValueError('Unknown paper identifier.')
+        if paper_ids[0] == paper_ids[1]:
+            raise ValueError('Select two different papers.')
+        # The UI supplies paper names separately. Remove names from the topic,
+        # preventing a paper name alone from appearing as topic evidence.
+        aliases = [r'sentence[- ]bert', r'dense passage retrieval',
+                   r'retrieval[- ]augmented generation', r'realm', r'lost in the middle']
+        topic = question
+        for alias in aliases:
+            topic = re.sub(alias, '', topic, flags=re.I)
+        topic = re.sub(r'\b(compare|versus|vs|between|papers?|please|explain)\b', '', topic, flags=re.I)
+        terms = {t for t in self.analyze(topic) if ' ' not in t}
+        if not terms:
+            raise ValueError('Add a topic beyond paper names, for example: retriever.')
+        q = self.vectorizer.transform([topic])
+        evidence = []
+        for pid in paper_ids:
+            paper = next(p for p in self.papers if p['id'] == pid)
+            sentences = re.split(r'(?<=[.!?])\s+', paper['text'])
+            matrix = self.vectorizer.transform(sentences)
+            scores = cosine_similarity(q, matrix).ravel()
+            local_terms = {t for t in self.analyze(paper['text']) if ' ' not in t}
+            coverage = len(terms & local_terms) / len(terms)
+            supported = float(max(scores)) >= 0.12 and coverage >= 0.5
+            selected = sorted(sorted(range(len(sentences)), key=lambda i: -float(scores[i]))[:2])
+            extracts = [sentences[i] for i in selected if float(scores[i]) > 0]
+            evidence.append({'paper_id':pid, 'title':paper['title'], 'url':paper['url'],
+                             'section':paper['section'], 'supported':supported,
+                             'extracts':extracts if supported else [],
+                             'score':round(float(max(scores)), 4), 'term_coverage':round(coverage, 4),
+                             'reason': 'Matching note evidence found.' if supported else 'The selected note does not provide a strong lexical match for this topic.'})
+        missing = [e['paper_id'] for e in evidence if not e['supported']]
+        complete = not missing
+        return {'question':question, 'mode':'Multi-paper evidence comparison',
+                'abstained':not complete, 'status':'comparison' if complete else 'insufficient_evidence',
+                'answer':'Evidence from both selected notes is shown below. Compare the extracts; no winner or unsupported difference is inferred.' if complete else
+                         'I cannot complete this comparison: matching evidence is missing from ' + ', '.join(missing) + '.',
+                'evidence':evidence, 'missing_paper_ids':missing,
+                'citations':[{'paper_id':e['paper_id'], 'title':e['title'], 'url':e['url'],
+                              'section':e['section'], 'evidence':' '.join(e['extracts'])} for e in evidence if e['supported']],
+                'elapsed_ms':round((time.perf_counter()-start)*1000, 2),
+                'limitations':'Lexical matching is not an entailment or factual-correctness check. Evidence is from short paraphrased notes, not full PDFs.'}

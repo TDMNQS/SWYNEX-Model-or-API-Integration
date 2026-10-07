@@ -25,20 +25,27 @@ class Handler(BaseHTTPRequestHandler):
         path = urlparse(self.path).path
         if path == '/': self.reply(200, HTML, 'text/html; charset=utf-8')
         elif path == '/api/papers': self.reply(200, [{'id':p['id'], 'title':p['title'], 'url':p['url']} for p in assistant.papers])
-        elif path == '/health': self.reply(200, {'status':'ok', 'papers':len(assistant.papers)})
+        elif path == '/health': self.reply(200, {'status':'ok', 'papers':len(assistant.papers), 'task':3})
+        elif path == '/api/evaluation':
+            report = Path(__file__).parent / 'examples' / 'evaluation_report.json'
+            if report.exists(): self.reply(200, report.read_bytes())
+            else: self.reply(404, {'error':'Run python evaluate.py to generate the report.'})
         else: self.reply(404, {'error':'Not found'})
 
     def do_POST(self):
-        if self.path != '/api/ask':
+        if self.path not in ('/api/ask', '/api/compare'):
             self.reply(404, {'error':'Not found'}); return
         try:
             length = int(self.headers.get('Content-Length', '0'))
             if length < 1 or length > 8192: raise ValueError('Invalid request size.')
             body = json.loads(self.rfile.read(length))
             if not isinstance(body, dict): raise ValueError('Request must be a JSON object.')
-            self.reply(200, assistant.ask(body.get('question'), body.get('paper_id')))
+            result = assistant.compare(body.get('question'), body.get('paper_ids')) if self.path == '/api/compare' else assistant.ask(body.get('question'), body.get('paper_id'))
+            self.reply(200, result)
         except (ValueError, TypeError) as exc:
             self.reply(400, {'error':str(exc)})
+        except Exception:
+            self.reply(500, {'error':'Unable to process this request. Please try again or restart the app.'})
 
     def log_message(self, *args):
         pass  # Do not log user questions.

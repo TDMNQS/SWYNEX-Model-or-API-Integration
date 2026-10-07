@@ -1,0 +1,567 @@
+{
+  "label": "Development evaluation, not held-out research accuracy",
+  "python_version": "3.12.14",
+  "scikit_learn_version": "1.8.0",
+  "total": 13,
+  "passed": 11,
+  "failed": 2,
+  "results": [
+    {
+      "case": {
+        "id": "S01",
+        "category": "single",
+        "question": "What similarity measure does Sentence-BERT use?",
+        "expected_sources": [
+          "P01"
+        ],
+        "contains": "cosine similarity"
+      },
+      "passed": true,
+      "actual": {
+        "question": "What similarity measure does Sentence-BERT use?",
+        "answer": "Semantic similarity search compares these embeddings using cosine similarity. Encoding sentences separately avoids repeatedly processing every possible sentence pair through BERT, making similarity search more efficient.",
+        "abstained": false,
+        "citations": [
+          {
+            "paper_id": "P01",
+            "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+            "url": "https://arxiv.org/abs/1908.10084",
+            "section": "Abstract \u2014 paraphrased source note",
+            "evidence": "Semantic similarity search compares these embeddings using cosine similarity. Encoding sentences separately avoids repeatedly processing every possible sentence pair through BERT, making similarity search more efficient."
+          }
+        ],
+        "retrieval_score": 0.3397,
+        "term_coverage": 0.8333,
+        "related_sources": [
+          {
+            "paper_id": "P01",
+            "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+            "score": 0.3397
+          },
+          {
+            "paper_id": "P05",
+            "title": "Lost in the Middle: How Language Models Use Long Contexts",
+            "score": 0.1219
+          },
+          {
+            "paper_id": "P02",
+            "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+            "score": 0.0
+          }
+        ],
+        "elapsed_ms": 1.8,
+        "mode": "TF-IDF retrieval + extractive answer from paraphrased notes"
+      }
+    },
+    {
+      "case": {
+        "id": "S02",
+        "category": "single",
+        "question": "How does REALM train its retriever?",
+        "expected_sources": [
+          "P04"
+        ],
+        "contains": "Masked language modeling"
+      },
+      "passed": true,
+      "actual": {
+        "question": "How does REALM train its retriever?",
+        "answer": "REALM incorporates a latent knowledge retriever into language-model pre-training. Masked language modeling supplies a learning signal for training the retriever without supervised retrieval labels.",
+        "abstained": false,
+        "citations": [
+          {
+            "paper_id": "P04",
+            "title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+            "url": "https://arxiv.org/abs/2002.08909",
+            "section": "Abstract \u2014 paraphrased source note",
+            "evidence": "REALM incorporates a latent knowledge retriever into language-model pre-training. Masked language modeling supplies a learning signal for training the retriever without supervised retrieval labels."
+          }
+        ],
+        "retrieval_score": 0.3208,
+        "term_coverage": 1.0,
+        "related_sources": [
+          {
+            "paper_id": "P04",
+            "title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+            "score": 0.3208
+          },
+          {
+            "paper_id": "P05",
+            "title": "Lost in the Middle: How Language Models Use Long Contexts",
+            "score": 0.0526
+          },
+          {
+            "paper_id": "P02",
+            "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+            "score": 0.0273
+          }
+        ],
+        "elapsed_ms": 1.66,
+        "mode": "TF-IDF retrieval + extractive answer from paraphrased notes"
+      }
+    },
+    {
+      "case": {
+        "id": "C01",
+        "category": "compare",
+        "question": "retriever",
+        "paper_ids": [
+          "P03",
+          "P04"
+        ],
+        "expected_sources": [
+          "P03",
+          "P04"
+        ]
+      },
+      "passed": true,
+      "actual": {
+        "question": "retriever",
+        "mode": "Multi-paper evidence comparison",
+        "abstained": false,
+        "status": "comparison",
+        "answer": "Evidence from both selected notes is shown below. Compare the extracts; no winner or unsupported difference is inferred.",
+        "evidence": [
+          {
+            "paper_id": "P03",
+            "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+            "url": "https://arxiv.org/abs/2005.11401",
+            "section": "Abstract \u2014 paraphrased source note",
+            "supported": true,
+            "extracts": [
+              "A neural retriever provides documents that supply evidence for generation."
+            ],
+            "score": 0.1925,
+            "term_coverage": 1.0,
+            "reason": "Matching note evidence found."
+          },
+          {
+            "paper_id": "P04",
+            "title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+            "url": "https://arxiv.org/abs/2002.08909",
+            "section": "Abstract \u2014 paraphrased source note",
+            "supported": true,
+            "extracts": [
+              "REALM incorporates a latent knowledge retriever into language-model pre-training.",
+              "The retriever accesses documents from a large corpus such as Wikipedia during pre-training, fine-tuning, and inference."
+            ],
+            "score": 0.1718,
+            "term_coverage": 1.0,
+            "reason": "Matching note evidence found."
+          }
+        ],
+        "missing_paper_ids": [],
+        "citations": [
+          {
+            "paper_id": "P03",
+            "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+            "url": "https://arxiv.org/abs/2005.11401",
+            "section": "Abstract \u2014 paraphrased source note",
+            "evidence": "A neural retriever provides documents that supply evidence for generation."
+          },
+          {
+            "paper_id": "P04",
+            "title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+            "url": "https://arxiv.org/abs/2002.08909",
+            "section": "Abstract \u2014 paraphrased source note",
+            "evidence": "REALM incorporates a latent knowledge retriever into language-model pre-training. The retriever accesses documents from a large corpus such as Wikipedia during pre-training, fine-tuning, and inference."
+          }
+        ],
+        "elapsed_ms": 1.3,
+        "limitations": "Lexical matching is not an entailment or factual-correctness check. Evidence is from short paraphrased notes, not full PDFs."
+      }
+    },
+    {
+      "case": {
+        "id": "C02",
+        "category": "compare",
+        "question": "question answering",
+        "paper_ids": [
+          "P02",
+          "P04"
+        ],
+        "expected_sources": [
+          "P02",
+          "P04"
+        ]
+      },
+      "passed": true,
+      "actual": {
+        "question": "question answering",
+        "mode": "Multi-paper evidence comparison",
+        "abstained": false,
+        "status": "comparison",
+        "answer": "Evidence from both selected notes is shown below. Compare the extracts; no winner or unsupported difference is inferred.",
+        "evidence": [
+          {
+            "paper_id": "P02",
+            "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+            "url": "https://arxiv.org/abs/2004.04906",
+            "section": "Abstract \u2014 paraphrased source note",
+            "supported": true,
+            "extracts": [
+              "Dense Passage Retrieval addresses passage selection for open-domain question answering.",
+              "The retriever selects relevant passages from a corpus for a downstream question-answering system."
+            ],
+            "score": 0.3384,
+            "term_coverage": 1.0,
+            "reason": "Matching note evidence found."
+          },
+          {
+            "paper_id": "P04",
+            "title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+            "url": "https://arxiv.org/abs/2002.08909",
+            "section": "Abstract \u2014 paraphrased source note",
+            "supported": true,
+            "extracts": [
+              "The work evaluates the approach on open-domain question answering."
+            ],
+            "score": 0.3678,
+            "term_coverage": 1.0,
+            "reason": "Matching note evidence found."
+          }
+        ],
+        "missing_paper_ids": [],
+        "citations": [
+          {
+            "paper_id": "P02",
+            "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+            "url": "https://arxiv.org/abs/2004.04906",
+            "section": "Abstract \u2014 paraphrased source note",
+            "evidence": "Dense Passage Retrieval addresses passage selection for open-domain question answering. The retriever selects relevant passages from a corpus for a downstream question-answering system."
+          },
+          {
+            "paper_id": "P04",
+            "title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+            "url": "https://arxiv.org/abs/2002.08909",
+            "section": "Abstract \u2014 paraphrased source note",
+            "evidence": "The work evaluates the approach on open-domain question answering."
+          }
+        ],
+        "elapsed_ms": 1.07,
+        "limitations": "Lexical matching is not an entailment or factual-correctness check. Evidence is from short paraphrased notes, not full PDFs."
+      }
+    },
+    {
+      "case": {
+        "id": "C03",
+        "category": "compare",
+        "question": "cosine similarity",
+        "paper_ids": [
+          "P01",
+          "P04"
+        ],
+        "expected_abstain": true,
+        "missing": [
+          "P04"
+        ]
+      },
+      "passed": true,
+      "actual": {
+        "question": "cosine similarity",
+        "mode": "Multi-paper evidence comparison",
+        "abstained": true,
+        "status": "insufficient_evidence",
+        "answer": "I cannot complete this comparison: matching evidence is missing from P04.",
+        "evidence": [
+          {
+            "paper_id": "P01",
+            "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+            "url": "https://arxiv.org/abs/1908.10084",
+            "section": "Abstract \u2014 paraphrased source note",
+            "supported": true,
+            "extracts": [
+              "Semantic similarity search compares these embeddings using cosine similarity.",
+              "Encoding sentences separately avoids repeatedly processing every possible sentence pair through BERT, making similarity search more efficient."
+            ],
+            "score": 0.5413,
+            "term_coverage": 1.0,
+            "reason": "Matching note evidence found."
+          },
+          {
+            "paper_id": "P04",
+            "title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+            "url": "https://arxiv.org/abs/2002.08909",
+            "section": "Abstract \u2014 paraphrased source note",
+            "supported": false,
+            "extracts": [],
+            "score": 0.0,
+            "term_coverage": 0.0,
+            "reason": "The selected note does not provide a strong lexical match for this topic."
+          }
+        ],
+        "missing_paper_ids": [
+          "P04"
+        ],
+        "citations": [
+          {
+            "paper_id": "P01",
+            "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+            "url": "https://arxiv.org/abs/1908.10084",
+            "section": "Abstract \u2014 paraphrased source note",
+            "evidence": "Semantic similarity search compares these embeddings using cosine similarity. Encoding sentences separately avoids repeatedly processing every possible sentence pair through BERT, making similarity search more efficient."
+          }
+        ],
+        "elapsed_ms": 1.14,
+        "limitations": "Lexical matching is not an entailment or factual-correctness check. Evidence is from short paraphrased notes, not full PDFs."
+      }
+    },
+    {
+      "case": {
+        "id": "C04",
+        "category": "compare",
+        "question": "2026 subscription price",
+        "paper_ids": [
+          "P03",
+          "P04"
+        ],
+        "expected_abstain": true,
+        "missing": [
+          "P03",
+          "P04"
+        ]
+      },
+      "passed": true,
+      "actual": {
+        "question": "2026 subscription price",
+        "mode": "Multi-paper evidence comparison",
+        "abstained": true,
+        "status": "insufficient_evidence",
+        "answer": "I cannot complete this comparison: matching evidence is missing from P03, P04.",
+        "evidence": [
+          {
+            "paper_id": "P03",
+            "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+            "url": "https://arxiv.org/abs/2005.11401",
+            "section": "Abstract \u2014 paraphrased source note",
+            "supported": false,
+            "extracts": [],
+            "score": 0.0,
+            "term_coverage": 0.0,
+            "reason": "The selected note does not provide a strong lexical match for this topic."
+          },
+          {
+            "paper_id": "P04",
+            "title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+            "url": "https://arxiv.org/abs/2002.08909",
+            "section": "Abstract \u2014 paraphrased source note",
+            "supported": false,
+            "extracts": [],
+            "score": 0.0,
+            "term_coverage": 0.0,
+            "reason": "The selected note does not provide a strong lexical match for this topic."
+          }
+        ],
+        "missing_paper_ids": [
+          "P03",
+          "P04"
+        ],
+        "citations": [],
+        "elapsed_ms": 1.02,
+        "limitations": "Lexical matching is not an entailment or factual-correctness check. Evidence is from short paraphrased notes, not full PDFs."
+      }
+    },
+    {
+      "case": {
+        "id": "U01",
+        "category": "single",
+        "question": "What is the latest 2026 benchmark score for this assistant?",
+        "expected_abstain": true
+      },
+      "passed": true,
+      "actual": {
+        "question": "What is the latest 2026 benchmark score for this assistant?",
+        "answer": "I cannot answer this from the included research notes. Try a question about their methods or limitations.",
+        "abstained": true,
+        "citations": [],
+        "retrieval_score": 0.0,
+        "term_coverage": 0.0,
+        "related_sources": [
+          {
+            "paper_id": "P01",
+            "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+            "score": 0.0
+          },
+          {
+            "paper_id": "P02",
+            "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+            "score": 0.0
+          },
+          {
+            "paper_id": "P03",
+            "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+            "score": 0.0
+          }
+        ],
+        "elapsed_ms": 0.41,
+        "mode": "TF-IDF retrieval + extractive answer from paraphrased notes"
+      }
+    },
+    {
+      "case": {
+        "id": "U02",
+        "category": "single",
+        "question": "What is the capital of France?",
+        "expected_abstain": true
+      },
+      "passed": true,
+      "actual": {
+        "question": "What is the capital of France?",
+        "answer": "I cannot answer this from the included research notes. Try a question about their methods or limitations.",
+        "abstained": true,
+        "citations": [],
+        "retrieval_score": 0.0,
+        "term_coverage": 0.0,
+        "related_sources": [
+          {
+            "paper_id": "P01",
+            "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+            "score": 0.0
+          },
+          {
+            "paper_id": "P02",
+            "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+            "score": 0.0
+          },
+          {
+            "paper_id": "P03",
+            "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+            "score": 0.0
+          }
+        ],
+        "elapsed_ms": 0.38,
+        "mode": "TF-IDF retrieval + extractive answer from paraphrased notes"
+      }
+    },
+    {
+      "case": {
+        "id": "E01",
+        "category": "error",
+        "question": "retriever",
+        "paper_ids": [
+          "P01",
+          "P01"
+        ],
+        "expected_error": true
+      },
+      "passed": true,
+      "error": "Select two different papers."
+    },
+    {
+      "case": {
+        "id": "E02",
+        "category": "error",
+        "question": "",
+        "paper_ids": [
+          "P03",
+          "P04"
+        ],
+        "expected_error": true
+      },
+      "passed": true,
+      "error": "Enter a comparison topic, for example: retriever."
+    },
+    {
+      "case": {
+        "id": "E03",
+        "category": "error",
+        "question": "retriever",
+        "paper_ids": [
+          "P03",
+          "P99"
+        ],
+        "expected_error": true
+      },
+      "passed": true,
+      "error": "Unknown paper identifier."
+    },
+    {
+      "case": {
+        "id": "F01",
+        "category": "challenge",
+        "question": "Does REALM use cosine similarity?",
+        "expected_abstain": true
+      },
+      "passed": false,
+      "actual": {
+        "question": "Does REALM use cosine similarity?",
+        "answer": "Semantic similarity search compares these embeddings using cosine similarity. Encoding sentences separately avoids repeatedly processing every possible sentence pair through BERT, making similarity search more efficient.",
+        "abstained": false,
+        "citations": [
+          {
+            "paper_id": "P01",
+            "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+            "url": "https://arxiv.org/abs/1908.10084",
+            "section": "Abstract \u2014 paraphrased source note",
+            "evidence": "Semantic similarity search compares these embeddings using cosine similarity. Encoding sentences separately avoids repeatedly processing every possible sentence pair through BERT, making similarity search more efficient."
+          }
+        ],
+        "retrieval_score": 0.2021,
+        "term_coverage": 1.0,
+        "related_sources": [
+          {
+            "paper_id": "P01",
+            "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+            "score": 0.2021
+          },
+          {
+            "paper_id": "P05",
+            "title": "Lost in the Middle: How Language Models Use Long Contexts",
+            "score": 0.1219
+          },
+          {
+            "paper_id": "P04",
+            "title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+            "score": 0.0482
+          }
+        ],
+        "elapsed_ms": 1.0,
+        "mode": "TF-IDF retrieval + extractive answer from paraphrased notes"
+      }
+    },
+    {
+      "case": {
+        "id": "F02",
+        "category": "challenge",
+        "question": "Does Sentence-BERT use masked language modeling?",
+        "expected_abstain": true
+      },
+      "passed": false,
+      "actual": {
+        "question": "Does Sentence-BERT use masked language modeling?",
+        "answer": "REALM incorporates a latent knowledge retriever into language-model pre-training. Masked language modeling supplies a learning signal for training the retriever without supervised retrieval labels.",
+        "abstained": false,
+        "citations": [
+          {
+            "paper_id": "P04",
+            "title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+            "url": "https://arxiv.org/abs/2002.08909",
+            "section": "Abstract \u2014 paraphrased source note",
+            "evidence": "REALM incorporates a latent knowledge retriever into language-model pre-training. Masked language modeling supplies a learning signal for training the retriever without supervised retrieval labels."
+          }
+        ],
+        "retrieval_score": 0.1938,
+        "term_coverage": 1.0,
+        "related_sources": [
+          {
+            "paper_id": "P04",
+            "title": "REALM: Retrieval-Augmented Language Model Pre-Training",
+            "score": 0.1938
+          },
+          {
+            "paper_id": "P01",
+            "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+            "score": 0.1863
+          },
+          {
+            "paper_id": "P05",
+            "title": "Lost in the Middle: How Language Models Use Long Contexts",
+            "score": 0.1193
+          }
+        ],
+        "elapsed_ms": 1.09,
+        "mode": "TF-IDF retrieval + extractive answer from paraphrased notes"
+      }
+    }
+  ]
+}
